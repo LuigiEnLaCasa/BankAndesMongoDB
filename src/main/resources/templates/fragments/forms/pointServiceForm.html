@@ -1,0 +1,21 @@
+<div>
+	<div class="row">
+		<div class="col">
+			<label class="col-form-label">Tipo</label>
+			<input class="form-control" type="text" id="type" name="type" />
+		</div>
+		<div class="col">
+			<label class="col-form-label">Dirección</label>
+			<input class="form-control" type="text" id="address" name="address" />
+		</div>
+	</div>
+	<div class="row">
+		<label class="col-form-label">Oficina asociada</label>
+		<select class="form-control" name="office" required>
+			<th:block th:each="office : ${offices}">
+				<option th:value="${office.id}" th:text="${office.name}"></option>
+			</th:block>
+		</select>
+		<div class="form-text" id="basic-addon4">Si necesita crear un punto de atención sin oficina asociada, use la opción 'sin oficina'</div>
+	</div>
+</div>

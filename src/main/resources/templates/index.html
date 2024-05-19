@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BancAlpes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #1c8000;
+        }
+
+        .navbar-brand,
+        .navbar-nav .nav-link {
+            color: #fff;
+        }
+
+        .hero-image {
+            background-image: url('https://i.kym-cdn.com/entries/icons/facebook/000/035/935/cover3.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-text {
+            color: #ffffff;
+            font-weight: bolder;
+            background-color: #1c8000;
+        }
+
+        .services-section {
+            background-color: #fff;
+            padding: 50px 0;
+            color: #1c8000;
+        }
+
+        .service-icon {
+            font-size: 48px;
+            color: #1c8000;
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            background-color: #1c8000;
+            color: #fff;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+<nav th:replace="~{fragments/header}"></nav>
+
+<div class="hero-image">
+    <div class="hero-text">
+        <h1>Bienvenidos a Bancalpes </h1>
+        <p class="lead">Su socio financiero de confianza</p>
+        <a href="/accounts" class="btn btn-primary">Ver cuentas</a>
+    </div>
+</div>
+
+<div id="services" class="services-section">
+    <div class="container">
+        <h2 class="text-center mb-4">Nuestros Servicios</h2>
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <i class="fas fa-money-bill-wave service-icon"></i>
+                <h4>Cuentas Bancarias</h4>
+                <p>Como administrador revisa todas las cuentas bancarias de tu banco.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <i class="fas fa-money-check service-icon"></i>
+                <h4>Préstamos</h4>
+                <p>Apruebe, rechace y consulte el estado de los prestamos de sus clientes</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <i class="fas fa-credit-card service-icon"></i>
+                <h4>Aministracion rapida</h4>
+                <p>Revise todas las metricas asociadas a su negocio rapido, facil y aprueba de tontos</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer text-center">
+    <div class="container">
+        <p>&copy; 2024 BancAlpes. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="~{fragments/headContent}"> </head>
+
+<body>
+    <nav th:replace="~{fragments/header}"></nav>
+    <br>
+    <form th:action="@{'/loans/' + ${id} + '/edit/save'}" th:object="${loan}" method="post">
+        <div th:replace="~{fragments/forms/statusLoanUpdate :: statusLoan(title='Cambiar estado de cuenta', loan=${loan})}">
+        </div>
+    </form>
+</body>
+</html>

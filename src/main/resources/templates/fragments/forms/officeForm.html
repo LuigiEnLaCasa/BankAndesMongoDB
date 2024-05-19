@@ -1,0 +1,23 @@
+<div>
+	<div class="row">
+		<div class="col">
+			<label class="col-form-label">Nombre</label>
+			<input class="form-control" type="text" id="name" name="name" />
+		</div>
+		<div class="col">
+			<label class="col-form-label">Dirección</label>
+			<input class="form-control" type="text" id="address" name="address" />
+		</div>
+	</div>
+	<div class="row">
+		<label class="col-form-label">Numero de identidad gerente de oficina</label>
+		<select class="form-control" name="employee" required >
+			<th:block th:each="employee : ${employees}">
+				<option th:value="${employee.idcard}" th:text="${employee.idcard}"></option>
+			</th:block>
+		</select>
+		<div class="form-text" id="basic-addon4">
+			Solo aparecerán los números de identidad de gerentes de oficina que no tengan una oficina asignada
+		</div>
+	</div>
+</div>

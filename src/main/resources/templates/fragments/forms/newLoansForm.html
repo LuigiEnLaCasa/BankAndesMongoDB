@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="~{fragments/headContent}"> </head>
+
+<body>
+
+    <div  th:fragment="newLoanForm(title)" class="container border border-2 w-50" >
+        <h1 class="text-center" th:text="${title}"></h1>
+        <form th:action="@{/loans/save}" method="post">
+            <label class="col-form-label" for="state">Estado:</label>
+            <select class="form-control" id="state" name="state" required>
+                <option value="Activar">Activar</option>
+            </select>
+            <div class="form-group">
+                <label for="valueloan">Valor del Préstamo:</label>
+                <input type="number" class="form-control" id="valueloan" name="valueloan" required>
+            </div>
+            <div class="form-group">
+                <label for="initialfee">Comisión Inicial:</label>
+                <input type="number" class="form-control" id="initialfee" name="initialfee" required>
+            </div>
+            <div class="form-group">
+                <label for="pendingfees">Comisiones Pendientes:</label>
+                <input type="number" class="form-control" id="pendingfees" name="pendingfees">
+            </div>
+            <div class="form-group">
+                <label for="pendingvalueloan">Valor Pendiente del Préstamo:</label>
+                <input type="number" class="form-control" id="pendingvalueloan" name="pendingvalueloan">
+            </div>
+            <div class="form-group">
+                <label for="valuefee">Valor de Comisión:</label>
+                <input type="number" class="form-control" id="valuefee" name="valuefee" required>
+            </div>
+            <div class="form-group">
+                <label for="interest">Interés:</label>
+                <input type="number" class="form-control" id="interest" name="interest">
+            </div>
+            <div class="form-group">
+                <label for="payday">Día de Pago:</label>
+                <input type="number" class="form-control" id="payday" name="payday" required>
+            </div>
+            <div class="form-group">
+                <label for="type">Tipo:</label>
+                <input type="text" class="form-control" id="type" name="type" required>
+            </div>
+            <label class="col-form-label" for="customer">ID de Cliente:</label>
+            <select class="form-control" id="customer" name="customer" required>
+                <option th:each="customer : ${customers}" th:value="${customer.idcard}" th:text="${customer.idcard}"></option>
+            </select>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a th:href="@{/}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</body>
+
+</html>

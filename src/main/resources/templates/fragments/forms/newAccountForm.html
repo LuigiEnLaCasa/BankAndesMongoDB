@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="~{fragments/headContent}"> </head>
+<body>
+
+<div th:fragment="newAccountForm(title)" class="container border border-2 w-50">
+    <h1 class="text-center" th:text="${title}"></h1>
+    <form>
+
+        <label class="col-form-label" for="balance">Balance:</label>
+        <input class="form-control" type="number" id="balance" name="balance" required />
+
+        <label class="col-form-label" for="status">Estado:</label>
+        <select class="form-control" id="status" name="status" required>
+            <option value="Activar">Activar</option>
+        </select>
+
+        <label class="col-form-label" for="Customer_idcard">ID de Cliente:</label>
+        <select class="form-control" id="Customer_idcard" name="Customer_idcard" required>
+            <option th:each="customer : ${customers}" th:value="${customer.idcard}" th:text="${customer.idcard}"></option>
+        </select>
+
+        <label class="col-form-label" for="office">Oficina asociada</label>
+        <select class="form-control" id="office" name="office" required>
+            <option th:each="office : ${offices}" th:value="${office.id}" th:text="${office.name}"></option>
+        </select>
+        <br>
+
+        <div class="text-center">
+            <input type="submit" value="Guardar" class="btn btn-primary">
+            <a th:href="@{/accounts.html}" class="btn btn-primary">Cancelar</a>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

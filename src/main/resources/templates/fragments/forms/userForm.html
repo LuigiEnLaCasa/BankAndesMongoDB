@@ -1,0 +1,62 @@
+<div>
+	<div class="row">
+		<div class="col">
+			<label class="col-form-label">Numero de identidad</label>
+			<input class="form-control" type="text" id="idcard" name="idcard" th:value="${newUser.idcard}" />
+		</div>
+		<div class="col">
+			<label class="col-form-label">Tipo de identidad</label>
+			<select class="form-control" id="typeid" name="typeid" required>
+				<option th:selected="${newUser.typeid eq 'CC'}" value="CC">CC</option>
+				<option th:selected="${newUser.typeid eq 'Pasaporte'}" value="Pasaporte">Pasaporte</option>
+				<option th:selected="${newUser.typeid eq 'PE'}" value="PE">Permiso especial (Venezolanos 🇻🇪)</option>
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<label class="col-form-label">Nombre</label>
+			<input class="form-control" type="text" id="name" name="name" th:value="${newUser.name}" />
+		</div>
+		<div class="col">
+			<label class="col-form-label">Login</label>
+			<input class="form-control" type="text" id="login" name="login" th:value="${newUser.login}" />
+		</div>
+
+		<div class="col">
+			<label class="col-form-label">Contraseña</label>
+			<input class="form-control" type="password" id="password" name="password" th:value="${newUser.password}" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<label class="col-form-label">Nacionalidad</label>
+			<input class="form-control" type="text" id="nationality" name="nationality" th:value="${newUser.nationality}" />
+		</div>
+
+		<div class="col">
+			<label class="col-form-label">Dirección</label>
+			<input class="form-control" type="text" id="address" name="address" th:value="${newUser.address}" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<label class="col-form-label">Correo electrónico</label>
+			<input class="form-control" type="text" id="email" name="email" th:value="${newUser.email}" />
+		</div>
+		<div class="col">
+			<label class="col-form-label">Teléfono</label>
+			<input class="form-control" type="text" id="phone" name="phone" th:value="${newUser.phone}" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<label class="col-form-label">País</label>
+			<input class="form-control" type="text" id="country" name="country" th:value="${newUser.country}" />
+		</div>
+		<div class="col">
+			<label class="col-form-label">Departamento</label>
+			<input class="form-control" type="text" id="department" name="department" th:value="${newUser.department}" />
+		</div>
+	</div>
+</div>

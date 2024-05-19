@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head th:replace="~{fragments/headContent}"> </head>
+
+	<body data-bs-theme="dark">
+		<nav th:replace="~{fragments/header}"></nav>
+		<div class="text-center container-md">
+			<h1>Lista de Loans</h1>
+
+			<table class="table table-condensed table-hover table-bordered table-responsive" style="border-collapse: collapse">
+				<thead class="thead-dark">
+					<tr>
+						<th>ID</th>
+						<th>Estado</th>
+						<th>Valor del Préstamo</th>
+						<th>Valor pendiente</th>
+						<th>Cuotas pendientes</th>
+						<th>Interés</th>
+						<th>Día de Pago</th>
+						<th>Tipo</th>
+						<th>ID de Cliente</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:each="loan : ${loans}">
+						<tr>
+							<td th:text="${loan.id}"></td>
+							<td th:text="${loan.state}"></td>
+							<td th:text="${loan.valueloan}"></td>
+							<td th:text="${loan.pendingvalueloan}"></td>
+							<td th:text="${loan.pendingfees}"></td>
+							<td th:text="${loan.interest}"></td>
+							<td th:text="${loan.payday}"></td>
+							<td th:text="${loan.type}"></td>
+
+							<td th:text="${loan.customer.getIdcard()}"></td>
+							<td class="d-flex justify-content-center flex-column gap-4 py-3">
+								<div>
+									<label for="amount" class="form-label text-start w-100 ps-1">Hacer Pago de Cuota</label>
+									<a class="row mx-1" th:href="@{/loans/{id}/make_fee_payment(id=${loan.id})}">
+										<button class="btn btn-primary">Pagar</button>
+									</a>
+								</div>
+								<div>
+									<label for="amount" class="form-label text-start w-100 ps-1">Hacer Pago extraordinario</label>
+									<form class="row mx-1 gap-2" th:action="@{/loans/{id}/make_extra_fee_payment(id=${loan.id})}" method="post">
+										<input type="number" name="amount" placeholder="Monto" class="form-control col" />
+										<input type="submit" value="Pagar" class="btn btn-primary col-4" />
+									</form>
+								</div>
+								<div class="alert alert-danger mb-0" role="alert" th:if="${loan.pendingvalueloan != 0}">
+									No se puede Cerrar el formulario porque el Pending Value Loan es 0.
+								</div>
+
+								<a class="row mx-1" th:if="${loan.pendingvalueloan == 0}" th:href="@{/loans/{id}/edit(id=${loan.id})}"
+									><button class="btn btn-primary">Cerrar prestamo</button></a
+								>
+							</td>
+						</tr>
+					</th:block>
+				</tbody>
+			</table>
+			<div class="text-center">
+				<a th:href="@{/loans/new}" class="btn btn-primary">Agregar Loan</a>
+				<a th:href="@{/}" class="btn btn-primary"> Volver Atrás</a>
+			</div>
+		</div>
+	</body>
+</html>

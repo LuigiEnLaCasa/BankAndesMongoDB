@@ -1,0 +1,16 @@
+<div>
+	<div class="row">
+		<div class="col">
+			<label class="col-form-label">Salario</label>
+			<input class="form-control" type="number" id="salary" name="salary" th:value="${newEmployee.salary}" />
+		</div>
+		<div class="col">
+			<label class="col-form-label">Cargo</label>
+			<select class="form-control" id="type" name="type" required>
+				<option th:selected="${newEmployee.type eq 'GERENTE_GENERAL'}" value="GERENTE_GENERAL">Gerente general</option>
+				<option th:selected="${newEmployee.type eq 'GERENTE_OFICINA'}" value="GERENTE_OFICINA">Gerente oficina</option>
+				<option th:selected="${newEmployee.type eq 'CAJERO'}" value="CAJERO">Cajero</option>
+			</select>
+		</div>
+	</div>
+</div>

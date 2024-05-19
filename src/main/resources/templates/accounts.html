@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head th:replace="~{fragments/headContent}"> </head>
+    <body>
+    <nav th:replace="~{fragments/header}"></nav>
+    <div class="text-center">
+        <h1>Lista de Accounts</h1>
+
+        <table class="table table-condensed table-hover table-bordered" style="border-collapse:collapse;">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Balance</th>
+                <th>Estado</th>
+                <th>ID de Cliente</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="account : ${accounts}">
+                <tr>
+                    <td th:text="${account.id}"></td>
+                    <td th:text="${account.balance}"></td>
+                    <td th:text="${account.status}"></td>
+                    <td th:text="${account.customer}"></td>
+                    <td>
+                        <a th:href="@{/accounts/{id}/edit(id=${account.id})}" class="btn btn-primary">Editar</a>
+
+                        <a th:if="${account.status == 'Activar'}"
+                           th:href="@{/accounts/{id}/withdraw(id=${account.id})}"
+                           class="btn btn-danger">Retirar</a>
+                        <a th:if="${account.status == 'Activar'}"
+                           th:href="@{/accounts/{id}/deposit(id=${account.id})}"
+                           class="btn btn-success">Consignar</a>
+
+                        <a th:if="${account.status == 'Desactivar'}"
+                           th:href="@{/accounts/{id}/withdraw(id=${account.id})}"
+                           class="btn btn-danger disabled">Retirar</a>
+
+                        <a th:if="${account.status == 'Desactivar'}"
+                           th:href="@{/accounts/{id}/deposit(id=${account.id})}"
+                           class="btn btn-success disabled">Consignar</a>
+
+                        <a th:href="@{/accounts/{id}/statement(id=${account.id})}" class="btn btn-primary">Extracto</a>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+        <div class="text-center">
+            <a th:href="@{/accounts/new}" class="btn btn-primary">Agregar Account</a>
+            <a th:href="@{/}" class="btn btn-primary"> Volver Atrás</a>
+        </div>
+    </div>
+    </body>
+
+</html>
