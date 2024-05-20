@@ -20,9 +20,9 @@ public class Client {
     @Id
     private ObjectId id;
 
-    private String idcard;
+    private String IDcard;
     
-    private String typeid;
+    private String typeID;
 
     private String name;
 

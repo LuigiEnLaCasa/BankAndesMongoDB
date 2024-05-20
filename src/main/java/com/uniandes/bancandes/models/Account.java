@@ -19,6 +19,7 @@ public class Account {
     private ObjectId id;
     private Double balance;
     private String status;
+    private String type;
     List<LogAccount> log_accounts;
     
     

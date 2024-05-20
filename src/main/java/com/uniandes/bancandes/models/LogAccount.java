@@ -7,13 +7,18 @@ import lombok.Setter;
 
 import java.util.Date;
 
+import org.bson.types.ObjectId;
+
+import jakarta.persistence.Id;
+
 
 @Getter
 @Setter
 @AllArgsConstructor              
 @NoArgsConstructor
 public class LogAccount {
-  
+    @Id
+    private ObjectId id;
     private Double ammount;
     private Date logdate;
     private String typelog;

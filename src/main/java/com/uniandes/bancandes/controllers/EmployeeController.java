@@ -16,6 +16,9 @@ import com.uniandes.bancandes.repository.EmployeeRepository;
 
 import org.springframework.ui.Model;
 
+//ESTE CONTROLADOR CUMPLE CON LOS REQS
+//CREAR USUARIO- EMPLEADO
+
 
 @Controller
 public class EmployeeController{
@@ -27,15 +30,15 @@ public class EmployeeController{
     ClientRepository customerRepository;
 
 
-    @GetMapping("/users")
-    public String users(Model model) {
-        Collection<Employee> employeeCollection = employeeRepository.findAll();
-        Collection<Client> customerCollection = customerRepository.findAll();
-        model.addAttribute("employees", employeeCollection);
-        model.addAttribute("customers", customerCollection);
-        return "users";
+    // @GetMapping("/employees")
+    // public String employees(Model model) {
+    //     Collection<Employee> employeeCollection = employeeRepository.findAll();
+    //     Collection<Client> customerCollection = customerRepository.findAll();
+    //     model.addAttribute("employees", employeeCollection);
+    //     model.addAttribute("customers", customerCollection);
+    //     return "employees";
 
-    }
+    // }
 
 
     @GetMapping("/users/new/employee")

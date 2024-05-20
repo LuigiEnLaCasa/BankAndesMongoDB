@@ -14,23 +14,27 @@ import com.uniandes.bancandes.models.Client;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+//ESTE CONTROLADOR CUMPLE CON LOS REQS
+//CREAR USUARIO- CLIENTE
 
 
 @Controller
-public class ClientsController{
+public class ClientController{
 
 
     @Autowired
     private ClientRepository clientRepository;
 
     //get clients
-    @PostMapping("/clients")
+
+
+
+    @GetMapping("/clients")
     public String clients(Model model){
         Collection<Client> clientCollection = clientRepository.findAll();
         model.addAttribute("clients", clientCollection);
-        return "clients";
+        return "users";
     }
 
     @GetMapping("/clients/new/client")
@@ -45,8 +49,8 @@ public class ClientsController{
         clientRepository.save(
             new Client(
             client.getId(),
-            client.getIdcard(),
-            client.getTypeid(),
+            client.getIDcard(),
+            client.getTypeID(),
             client.getName(),
             client.getLogin(),
             client.getPassword(),

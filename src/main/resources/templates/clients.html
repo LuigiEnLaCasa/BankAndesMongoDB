@@ -5,54 +5,54 @@
 		<nav th:replace="~{fragments/header}"></nav>
 		
 		<div class="container-md">
-			<h1 class="text-light" th:text="'Cliente ' + ${user.name}"></h1>
+			<h1 class="text-light" th:text="'Cliente ' + ${client.name}"></h1>
 			<h2 class="mb-3">Datos de usuario</h2>
 			<div class="row mb-5">
 				<div class="col">
 					<h4>Tipo de identificación:</h4>
-					<span th:text="${user.typeid}"></span>
+					<span th:text="${client.typeid}"></span>
 				</div>
 				<div class="col">
 					<h4>Número de identificación:</h4>
-					<span th:text="${user.idcard}"></span>
+					<span th:text="${client.idcard}"></span>
 				</div>
 			</div>
 			<div class="row mb-5">
 				<div class="col">
 					<h4>Nombre:</h4>
-					<span th:text="${user.name}"></span>
+					<span th:text="${client.name}"></span>
 				</div>
 				<div class="col">
 					<h4>Login:</h4>
-					<span th:text="${user.login}"></span>
+					<span th:text="${client.login}"></span>
 				</div>
 			</div>
 			<div class="row mb-5">
 				<div class="col">
 					<h4>Nacionalidad</h4>
-					<span th:text="${user.nationality}"></span>
+					<span th:text="${client.nationality}"></span>
 				</div>
 				<div class="col">
 					<h4>Dirección:</h4>
-					<span th:text="${user.address}"></span>
+					<span th:text="${client.address}"></span>
 				</div>
 				<div class="col">
 					<h4>Correo:</h4>
-					<span th:text="${user.email}"></span>
+					<span th:text="${client.email}"></span>
 				</div>
 				<div class="col">
 					<h4>Teléfono:</h4>
-					<span th:text="${user.phone}"></span>
+					<span th:text="${client.phone}"></span>
 				</div>
 			</div>
 			<div class="row mb-5">
 				<div class="col">
 					<h4>Country</h4>
-					<span th:text="${user.country}"></span>
+					<span th:text="${client.country}"></span>
 				</div>
 				<div class="col">
 					<h4>Departamento</h4>
-					<span th:text="${user.department}"></span>
+					<span th:text="${client.department}"></span>
 				</div>
 			</div>
 			<h1>Lista de Accounts</h1>

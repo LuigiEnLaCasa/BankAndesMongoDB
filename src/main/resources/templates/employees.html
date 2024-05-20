@@ -23,10 +23,10 @@
 						</tr>
 					</thead>
 					<tbody class="table-group-divider">
-						<th:block th:each=" client : ${clients}">
+						<th:block th:each=" client : ${employees}">
 							<tr>
-								<td th:text="${client.IDcard}"></td>
-								<td th:text="${client.typeID}"></td>
+								<td th:text="${client.idcard}"></td>
+								<td th:text="${client.typeid}"></td>
 								<td th:text="${client.name}"></td>
 								<td th:text="${client.login}"></td>
 								<td th:text="${client.password}"></td>

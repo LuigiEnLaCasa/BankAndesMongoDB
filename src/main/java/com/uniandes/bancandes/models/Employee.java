@@ -54,6 +54,6 @@ public class Employee {
 
     private Double salary;
 
-    private List<Office> offices;
+    private List<ObjectId> offices;
 
 }
