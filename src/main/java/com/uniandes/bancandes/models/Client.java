@@ -1,28 +1,27 @@
 package com.uniandes.bancandes.models;
 
-import java.io.Serializable;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+import java.util.List;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@ToString
-@Table(name = "User")
-public class User implements Serializable {
-
+@Document(collection = "clients")
+public class Client {
     @Id
-    private String idcard;
+    private ObjectId id;
 
+    private String idcard;
+    
     private String typeid;
 
     private String name;
@@ -43,4 +42,5 @@ public class User implements Serializable {
 
     private String department;
 
+    private List<ObjectId> accounts;
 }

@@ -1,24 +1,30 @@
 package com.uniandes.bancandes.repository;
 
-import java.util.Collection;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-
 import com.uniandes.bancandes.models.Office;
+import com.uniandes.bancandes.models.PointService;
 
-import jakarta.transaction.Transactional;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.mongodb.repository.Update;
 
-public interface OfficeRepository extends JpaRepository<Office, Integer> {
+import java.util.List;
 
-    @Modifying
-    @Transactional
-    @Query(value = "INSERT INTO OFFICE (id, name, address, employee_idCard) VALUES (OFFICE_SEQ.nextval, :name, :address, :employee_idCard)", nativeQuery = true)
-    void saveOffice(@Param("name") String name, @Param("address") String address,
-            @Param("employee_idCard") String employee_idCard);
 
-    @Query(value = "SELECT * FROM OFFICE", nativeQuery = true)
-    Collection<Office> findAllOffices();
+
+public interface OfficeRepository extends MongoRepository <Office,ObjectId>{
+
+    @Query("{'name': ?0, 'address': ?1, 'point_services': ?2}")
+    Office saveNewOffice(String name, String address, List<PointService> pointServices);
+
+    @Query("{'type': ?0, 'address': ?1}")
+    PointService saveNewPointService(String type, String address);
+
+    @Query("{'_id': ?0}")
+    @Update("{$push: {'point_services': {'type': ?1, 'address': ?2 }}}")
+    void addPointServiceToOffice(ObjectId accountId, String type, String address);
+
+
+    
+
 }

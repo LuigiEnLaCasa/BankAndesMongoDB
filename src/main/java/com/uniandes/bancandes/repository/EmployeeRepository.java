@@ -1,22 +1,18 @@
 package com.uniandes.bancandes.repository;
 
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.uniandes.bancandes.models.Employee;
+import com.uniandes.bancandes.models.Office;
 
-public interface EmployeeRepository extends CrudRepository<Employee, String> {
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
+import java.util.List;
 
-    @Modifying
-    @Transactional
-    @Query(value = "INSERT INTO Employee (idCard, type, salary, User_IDCard) VALUES (:idCard, :type, :salary, :userIdCard)", nativeQuery = true)
-    void addEmployee(@Param("idCard") String idCard, @Param("type") String type,
-            @Param("salary") Double salary, @Param("userIdCard") String userIdCard);
 
-    @Query(value = "select * from Employee WHERE user_idcard NOT IN (SELECT employee_idcard from OFFICE) AND employee.type = 'GERENTE_OFICINA'", nativeQuery = true)
-    Iterable<Employee> findEmployeesWithoutOffice();
+
+public interface EmployeeRepository extends MongoRepository <Employee,ObjectId>{
+
+    @Query("{'name': ?0, 'department': ?1, 'login': ?2, 'password': ?3, 'nationality': ?4, 'address': ?5, 'email': ?6, 'phone': ?7, 'country': ?8, 'type': ?9, 'salary': ?10, 'offices': ?11}")
+    Employee saveNewEmployee(String name, String department, String login, String password, String nationality, String address, String email, String phone, String country, String type, Double salary, List<Office> offices);
 
 }
