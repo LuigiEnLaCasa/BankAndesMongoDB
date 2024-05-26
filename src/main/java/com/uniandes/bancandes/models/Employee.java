@@ -1,5 +1,6 @@
 package com.uniandes.bancandes.models;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -54,6 +55,6 @@ public class Employee {
 
     private Double salary;
 
-    private List<ObjectId> offices;
+    private List<ObjectId> offices = new ArrayList<>();
 
 }
