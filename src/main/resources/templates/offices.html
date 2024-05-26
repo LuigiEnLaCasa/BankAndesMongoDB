@@ -12,6 +12,7 @@
 							<th scope="col">Id</th>
 							<th scope="col">Nombre</th>
 							<th scope="col">Dirección</th>
+							<th scope="col">Puntos de Atención</th>
 				
 						</tr>
 					</thead>
@@ -21,6 +22,10 @@
                                 <td th:text="${office.id}"></td>
                                 <td th:text="${office.name}"></td>
                                 <td th:text="${office.address}"></td>
+								<td>
+									<a th:href="@{/offices/{id}/point_services(id=${office.id})}" class="btn btn-primary">Mirar</a>
+								</td>
+							</tr>
                                 
 							</tr>
 						</th:block>

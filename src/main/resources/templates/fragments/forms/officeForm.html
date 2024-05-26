@@ -10,10 +10,10 @@
 		</div>
 	</div>
 	<div class="row">
-		<label class="col-form-label">Numero de identidad gerente de oficina</label>
+		<label class="col-form-label">Gerente encargado: </label>
 		<select class="form-control" name="employee" required >
 			<th:block th:each="employee : ${employees}">
-				<option th:value="${employee.idcard}" th:text="${employee.idcard}"></option>
+				<option th:value="${employee.id}" th:text="${employee.id}"></option>
 			</th:block>
 		</select>
 		<div class="form-text" id="basic-addon4">
