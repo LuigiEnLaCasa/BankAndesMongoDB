@@ -24,7 +24,7 @@
 
         <label class="col-form-label" for="Customer_idcard">ID de Cliente:</label>
         <select class="form-control" id="Customer_idcard" name="Customer_idcard" required>
-            <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.id}"></option>
+            <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.IDcard}"></option>
         </select>
 
         <label class="col-form-label" for="office">Oficina asociada</label>

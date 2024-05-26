@@ -1,5 +1,6 @@
 package com.uniandes.bancandes.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -26,5 +27,5 @@ public class Office {
     private String name;
     private String address;
     @Field("point_services")
-    private List<PointService> point_services;
+    private List<PointService> point_services = new ArrayList<>();
 }

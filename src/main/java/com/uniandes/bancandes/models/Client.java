@@ -2,6 +2,7 @@ package com.uniandes.bancandes.models;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -42,5 +43,5 @@ public class Client {
 
     private String department;
 
-    private List<ObjectId> accounts;
+    private List<ObjectId> accounts = new ArrayList<>();
 }

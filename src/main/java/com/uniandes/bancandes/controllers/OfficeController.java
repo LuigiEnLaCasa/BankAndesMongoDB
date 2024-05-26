@@ -45,7 +45,7 @@ public class OfficeController {
 
     @GetMapping("/offices/new")
     public String accountForm(Model model) {
-        model.addAttribute("newOffice", new Account());
+        model.addAttribute("newOffice", new Office());
         model.addAttribute("employees", employeeRepository.findAll()); 
 
         return "newOffice";

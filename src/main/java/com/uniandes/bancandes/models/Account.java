@@ -1,5 +1,6 @@
 package com.uniandes.bancandes.models;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -24,7 +25,7 @@ public class Account {
     private String type;
     
     @Field("log_accounts")
-    List<LogAccount> log_accounts;
+    List<LogAccount> log_accounts = new ArrayList<>();
     
     
 
