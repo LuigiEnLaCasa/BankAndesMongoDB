@@ -17,7 +17,7 @@
 
         <label class="col-form-label" for="Customer_idcard">ID de Cliente:</label>
         <select class="form-control" id="Customer_idcard" name="Customer_idcard" required>
-            <option th:each="customer : ${customers}" th:value="${customer.idcard}" th:text="${customer.idcard}"></option>
+            <option th:each="customer : ${clients}" th:value="${customer.idcard}" th:text="${customer.idcard}"></option>
         </select>
 
         <label class="col-form-label" for="office">Oficina asociada</label>
@@ -28,7 +28,7 @@
 
         <div class="text-center">
             <input type="submit" value="Guardar" class="btn btn-primary">
-            <a th:href="@{/accounts.html}" class="btn btn-primary">Cancelar</a>
+            <a th:href="@{/accounts}" class="btn btn-primary">Cancelar</a>
         </div>
 
     </form>

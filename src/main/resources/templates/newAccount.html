@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Crear Bebedor</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
-
-</head>
+<head th:replace="~{fragments/headContent}"></head>
 <body>
-</br>
-<form action="#" th:action="@{/accounts/new/save}" method="post">
-    <div th:replace="~{fragments/forms/newAccountForm :: newAccountForm(title='Crear cuenta')}">
-</form>
+<nav th:replace="~{fragments/header}"></nav>
+<div class="text-center">
+
+    <form action="#" th:action="@{/accounts/new/save}" method="post" class="form-horizontal">
+        <div th:replace="~{fragments/forms/newAccountForm :: newAccountForm(title='Crear cuenta')}"></div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <!-- <button type="submit" class="btn btn-primary">Guardar</button>
+                <a th:href="@{/accounts}" class="btn btn-secondary">Cancelar</a> -->
+            </div>
+        </div>
+    </form>
 </div>
 </body>
 </html>

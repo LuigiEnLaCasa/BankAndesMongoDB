@@ -15,7 +15,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "employee")
+@Document(collection = "employees")
 public class Employee {
     @Id
     private ObjectId id;

@@ -20,22 +20,25 @@
 							<th scope="col">Teléfono</th>
 							<th scope="col">País</th>
 							<th scope="col">Departamento</th>
+							<th scope="col">Salary</th>
 						</tr>
 					</thead>
 					<tbody class="table-group-divider">
-						<th:block th:each=" client : ${employees}">
+						<th:block th:each=" employee : ${employees}">
 							<tr>
-								<td th:text="${client.idcard}"></td>
-								<td th:text="${client.typeid}"></td>
-								<td th:text="${client.name}"></td>
-								<td th:text="${client.login}"></td>
-								<td th:text="${client.password}"></td>
-								<td th:text="${client.nationality}"></td>
-								<td th:text="${client.address}"></td>
-								<td th:text="${client.email}"></td>
-								<td th:text="${client.phone}"></td>
-								<td th:text="${client.country}"></td>
-								<td th:text="${client.department}"></td>
+								<td th:text="${employee.idcard}"></td>
+								<td th:text="${employee.typeid}"></td>
+								<td th:text="${employee.name}"></td>
+								<td th:text="${employee.login}"></td>
+								<td th:text="${employee.password}"></td>
+								<td th:text="${employee.nationality}"></td>
+								<td th:text="${employee.address}"></td>
+								<td th:text="${employee.email}"></td>
+								<td th:text="${employee.phone}"></td>
+								<td th:text="${employee.country}"></td>
+								<td th:text="${employee.department}"></td>
+								<td th:text="${employee.salary}"></td>
+								
 							</tr>
 						</th:block>
 					</tbody>

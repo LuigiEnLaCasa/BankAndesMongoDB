@@ -31,6 +31,16 @@
             </thead>
             <tbody>
 
+                <tr th:each="log : ${logs}" >
+                    <td th:text="${log.id}"></td>
+                    <td th:text="${log.ammount}"></td>
+                    <td th:text="${log.logdate}"></td>
+                    <td th:text="${log.typelog}"></td>
+                    <td th:text="${account.id}"></td>
+                    
+                </tr>
+                
+
             </tbody>
         </table>
     </div>

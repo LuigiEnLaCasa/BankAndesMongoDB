@@ -29,8 +29,18 @@ public interface AccountRepository extends MongoRepository<Account, ObjectId> {
     @Query("{ '_id': ?0 }")
     Account findAccountById(ObjectId accountId);
 
-    @Query("{ '_id': ?0, 'logAccounts': { $elemMatch: { $expr: { $and: [ { $eq: [ { $month: '$logAccounts.logdate' }, ?1 ] }, { $eq: [ { $year: '$logAccounts.logdate' }, ?2 ] } ] } } } }")
+    @Query("{ '_id': ?0, 'log_accounts': { $elemMatch: { $expr: { $and: [ { $eq: [ { $month: '$logAccounts.logdate' }, ?1 ] }, { $eq: [ { $year: '$logAccounts.logdate' }, ?2 ] } ] } } } }")
     List<LogAccount> consultarLogsPorCuentaYMesAnio(ObjectId idCuenta, Integer mes, Integer anio);
+
+    @Query(value = "{'_id': ?0}", fields = "{'log_accounts': 1, '_id': 0}")
+    List<LogAccount> consultarLogsPorCuenta(ObjectId idCuenta);
+
+    //UPDATE
+    @Query("{ '_id': ?0 }")
+    @Update("{$set: {'status': ?1}}")
+    void updateAccountStatus(ObjectId accountId, String status);
+    
+   
     
 }
 

@@ -30,18 +30,18 @@ public class EmployeeController{
     ClientRepository customerRepository;
 
 
-    // @GetMapping("/employees")
-    // public String employees(Model model) {
-    //     Collection<Employee> employeeCollection = employeeRepository.findAll();
-    //     Collection<Client> customerCollection = customerRepository.findAll();
-    //     model.addAttribute("employees", employeeCollection);
-    //     model.addAttribute("customers", customerCollection);
-    //     return "employees";
+    @GetMapping("/employees")
+    public String employees(Model model) {
+        Collection<Employee> employeeCollection = employeeRepository.findAll();
+        Collection<Client> customerCollection = customerRepository.findAll();
+        model.addAttribute("employees", employeeCollection);
+        //model.addAttribute("customers", customerCollection);
+        return "employees";
 
-    // }
+    }
 
 
-    @GetMapping("/users/new/employee")
+    @GetMapping("/users/new/employees")
     public String employeeForm(Model model) {
 
         System.out.println("new employee");

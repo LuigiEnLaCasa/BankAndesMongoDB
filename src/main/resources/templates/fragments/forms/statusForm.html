@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head th:replace="~{fragments/headContent}"> </head>
+
     <body>
+        
 
     <div th:fragment="statusForm(title)" class="container border border-2 w-50">
-        <h1 class="text-center" th:text="'Cambiar estado al cliente ' + ${account.getCustomer()}"></h1>
+        
+        <h1 class="text-center" th:text="'Cambiar estado a la cuenta ' + ${account.getId()}"></h1>  
 
-        <form>
+         <form>
 
             <label class="col-form-label" for="status">Estado:</label>
             <select class="form-control" id="status" name="status" required>
@@ -26,7 +29,7 @@
             </div>
 
         </form>
-    </div>
+    </div> 
 
     </body>
 </html>

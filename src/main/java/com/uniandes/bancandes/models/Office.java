@@ -3,6 +3,7 @@ package com.uniandes.bancandes.models;
 import java.util.List;
 
 import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Document(collection = "offices")
 public class Office {
    
     @Id
