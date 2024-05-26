@@ -2,6 +2,7 @@ package com.uniandes.bancandes.controllers;
 
 import java.io.Console;
 import java.time.Instant;
+import java.time.OffsetDateTime;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -38,6 +39,8 @@ public class AccountController {
     @Autowired
     private OfficeRepository officeRepository;
 
+
+    private Integer superId =4 ;
     //mostrar las cuentas
         @GetMapping("/accounts")
     public String clients(Model model){
@@ -127,7 +130,7 @@ public class AccountController {
     @GetMapping("/accounts/{id}/withdraw")
     public String accountWithdrawMoney(@PathVariable("id") ObjectId id, Model model) {
         Account account = accountRepository.findAccountById(id);
-        if (account != null || account.getBalance()>= 0) {
+        if (account != null && account.getBalance() >= 0) {
             model.addAttribute("account", account);
             return "opWithdraw";
         } else {
@@ -136,11 +139,16 @@ public class AccountController {
     }
 
     @PostMapping("/accounts/{id}/withdraw/save")
-    public String accountWithdrawSave(@PathVariable("id") ObjectId id, @RequestParam Double value, @ModelAttribute Account account) {
+    public String accountWithdrawSave(
+        @PathVariable("id") ObjectId id, 
+        @RequestParam Double value, 
+        @ModelAttribute Account account) {
         
-        // Instant currentDate = Instant.now();
-        
-        //accountRepository.addLogToAccount(id, value,currentDate, "Retiro");
+       
+
+        //int newLogId = generateNewLogId(account.getLog_accounts()); 
+        accountRepository.addLogToAccount(id, this.superId ,value, Instant.now(), "Retiro");
+        this.superId +=1;
         value *=-1;
         accountRepository.withdrawMoney(id, value);
         return "redirect:/accounts";
@@ -159,12 +167,16 @@ public class AccountController {
     }
 
     @PostMapping("/accounts/{id}/deposit/save")
-    public String accountDepositSave(@PathVariable("id") ObjectId id, @RequestParam Double value, @ModelAttribute Account account) {
+    public String accountDepositSave(
+        @PathVariable("id") ObjectId id, 
+        @RequestParam Double value, 
+        @ModelAttribute Account account) {
 
        
 
         
-        //logAccountRepository.insertLogAccount(value,"Consignacion",currentDate,account.getId());
+        accountRepository.addLogToAccount(id, this.superId ,value, Instant.now(), "Depósito");
+        this.superId +=1;
         accountRepository.depositMoney(id, value);
         return "redirect:/accounts";
     }

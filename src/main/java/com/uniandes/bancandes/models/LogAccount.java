@@ -18,7 +18,7 @@ import jakarta.persistence.Id;
 @NoArgsConstructor
 public class LogAccount {
     @Id
-    private ObjectId id;
+    private Integer idLog;
     private Double ammount;
     private Date logdate;
     private String typelog;

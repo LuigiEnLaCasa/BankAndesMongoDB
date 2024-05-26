@@ -43,8 +43,9 @@ public interface AccountRepository extends MongoRepository<Account, ObjectId> {
     void updateAccountStatus(ObjectId accountId, String status);
     
     @Query("{'_id': ?0}")
-    @Update("{$push: {'log_accounts': {ammount': ?1, 'logdate': ?2, 'typelog': ?3}}}")
-    void addLogToAccount(ObjectId idAccount, Double ammount, Instant logdate, String typelog);
+    @Update("{$push: {'log_accounts': {'idLog': ?1, 'ammount': ?2, 'logdate': ?3, 'typelog': ?4}}}")
+    void addLogToAccount(ObjectId idAccount, int idLog, Double ammount, Instant logdate, String typelog);
+
 
     @Query("{'_id': ?0}")
     @Update("{$inc: {'balance': ?1}}")
