@@ -31,6 +31,10 @@
                         <a th:if="${account.status == 'Activar'}"
                            th:href="@{/accounts/{id}/deposit(id=${account.id})}"
                            class="btn btn-success">Consignar</a>
+                           
+                           <a th:if="${account.status == 'Activar'}"
+                           th:href="@{/accounts/transfer/{id}(id=${account.id})}"
+                           class="btn btn-warning">Transferir</a>
 
                         <a th:if="${account.status == 'Desactivar'}"
                            th:href="@{/accounts/{id}/withdraw(id=${account.id})}"
@@ -39,6 +43,10 @@
                         <a th:if="${account.status == 'Desactivar'}"
                            th:href="@{/accounts/{id}/deposit(id=${account.id})}"
                            class="btn btn-success disabled">Consignar</a>
+
+                           <a th:if="${account.status == 'Desactivar'}"
+                           th:href="@{/accounts/transfer/{id}(id=${account.id})}"
+                           class="btn btn-warning disabled">Transferir</a>
 
                         <a th:href="@{/accounts/{id}/statement(id=${account.id})}" class="btn btn-primary">Extracto</a>
                     </td>

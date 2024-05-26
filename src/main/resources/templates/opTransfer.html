@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="~{fragments/headContent}"> </head>
+
+<body>
+<nav th:replace="~{fragments/header}"></nav>
+<br>
+<form th:action="@{'/accounts/transfer/' + ${account.id} + '/save'}" th:object="${account}" method="post">
+    <div th:replace="~{fragments/forms/transferForm :: balanceForm(title='Ingresar dinero a Transferir', account=${account})}">
+    </div>
+</form>
+</body>
+</html>
+

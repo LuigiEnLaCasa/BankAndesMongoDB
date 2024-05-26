@@ -182,7 +182,46 @@ public class AccountController {
     }
 
 
+    @GetMapping("/accounts/transfer/{id}")
+    public String transferMoney(@PathVariable("id") ObjectId id, Model model){
+        
+        Account account = accountRepository.findAccountById(id);
 
+        if (account != null) {
+            model.addAttribute("account", account);
+            model.addAttribute("customers", clientRepository.findAll());
+            return "opTransfer";
+        } else {
+            return "redirect:/accounts";
+        }
+
+    }
+
+    @PostMapping("accounts/transfer/{id}/save")
+    public String transferMoneySave(
+        @PathVariable("id") ObjectId senderId,
+        @RequestParam Double value,
+        @RequestParam ObjectId recieverId) {
+
+        Account sender = accountRepository.findAccountById(senderId);
+        Account reciever = accountRepository.findAccountById(senderId);
+        
+        if (sender != null && reciever!= null) {
+            // Implement the logic to handle the transfer
+            // For example, update the account balance and log the transaction
+            // Example logic:
+            // account.setBalance(account.getBalance() - value);
+            // accountRepository.save(account);
+
+            // Add a log entry (assuming you have a method to do this)
+            // accountRepository.addLogToAccount(id, newLogId, value, Instant.now(), "transfer");
+
+            // Optionally, find the customer by Customer_idcard and perform further operations
+            return "redirect:/accounts";
+        } else {
+            return "redirect:/accounts";
+        }
+    }
 
 
 }
