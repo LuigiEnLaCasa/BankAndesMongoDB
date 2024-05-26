@@ -189,7 +189,7 @@ public class AccountController {
 
         if (account != null) {
             model.addAttribute("account", account);
-            model.addAttribute("customers", clientRepository.findAll());
+            model.addAttribute("customers", accountRepository.findAll());
             return "opTransfer";
         } else {
             return "redirect:/accounts";
@@ -201,22 +201,27 @@ public class AccountController {
     public String transferMoneySave(
         @PathVariable("id") ObjectId senderId,
         @RequestParam Double value,
-        @RequestParam ObjectId recieverId) {
+        @RequestParam("recieverId") ObjectId recieverId) {
 
+        // Account sender = accountRepository.findAccountById(senderId);
+        // Account reciever = accountRepository.findAccountById(senderId);
         Account sender = accountRepository.findAccountById(senderId);
-        Account reciever = accountRepository.findAccountById(senderId);
-        
-        if (sender != null && reciever!= null) {
-            // Implement the logic to handle the transfer
-            // For example, update the account balance and log the transaction
-            // Example logic:
-            // account.setBalance(account.getBalance() - value);
-            // accountRepository.save(account);
+        Account receiver = accountRepository.findAccountById(recieverId);
 
-            // Add a log entry (assuming you have a method to do this)
-            // accountRepository.addLogToAccount(id, newLogId, value, Instant.now(), "transfer");
+        if (sender != null && receiver!= null ) {
+            
+            sender.setBalance(sender.getBalance() - value);
+            receiver.setBalance(receiver.getBalance() + value);
 
-            // Optionally, find the customer by Customer_idcard and perform further operations
+            // Save the updated accounts
+            accountRepository.save(sender);
+            accountRepository.save(receiver);
+
+            // Log the transaction (assuming you have a method for this)
+            accountRepository.addLogToAccount(senderId, 1, value, Instant.now(), "transfer out");
+            accountRepository.addLogToAccount(recieverId, 1, value, Instant.now(), "transfer in");
+
+
             return "redirect:/accounts";
         } else {
             return "redirect:/accounts";

@@ -11,7 +11,7 @@
 
     <label class="col-form-label" for="recieverId">ID de Receptor:</label>
     <select class="form-control" id="recieverId" name="recieverId" required>
-        <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.IDcard}"></option>
+        <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.id}"></option>
     </select>
     <button type="submit" th:text="Guardar"></button>
 </div>
