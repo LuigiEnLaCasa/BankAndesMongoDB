@@ -39,6 +39,7 @@ public class ClientController{
 
     @GetMapping("/clients/new/client")
     public String clientForm(Model model) {
+        model.addAttribute("newUser", new Client());
         
         return "newClient";
     }
@@ -63,7 +64,7 @@ public class ClientController{
             client.getAccounts()
 
         ));
-        return "redirect:/users";
+        return "redirect:/clients";
 
     }
 

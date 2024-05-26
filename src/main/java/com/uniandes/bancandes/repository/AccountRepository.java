@@ -7,10 +7,10 @@ import com.uniandes.bancandes.models.LogAccount;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
+import java.time.Instant;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.Update;
 
@@ -23,9 +23,6 @@ public interface AccountRepository extends MongoRepository<Account, ObjectId> {
     @Query("{'id': ?0, 'balance': ?1, 'status': ?2, 'type':?3 ,'log_accounts': ?4}")
     Account saveNewAccount(ObjectId id, Double balance, String status,String type , List<LogAccount> log_accounts);
 
-    @Query("{'_id': ?0}")
-    @Update("{$push: {'log_accounts': {'id':?1 ,'ammount': ?2, 'logdate': ?3, 'typelog': ?4}}}")
-    void addLogToAccount(ObjectId accountId, Integer id ,Double ammount, Date logdate, String typelog);
 
     
     @Query("{ '_id': ?0 }")
@@ -40,19 +37,24 @@ public interface AccountRepository extends MongoRepository<Account, ObjectId> {
 
 
 
-    /////////
-
-
-    /////////
-
-
-
     //UPDATE
     @Query("{ '_id': ?0 }")
     @Update("{$set: {'status': ?1}}")
     void updateAccountStatus(ObjectId accountId, String status);
     
-   
+    @Query("{'_id': ?0}")
+    @Update("{$push: {'log_accounts': {ammount': ?1, 'logdate': ?2, 'typelog': ?3}}}")
+    void addLogToAccount(ObjectId idAccount, Double ammount, Instant logdate, String typelog);
+
+    @Query("{'_id': ?0}")
+    @Update("{$inc: {'balance': ?1}}")
+    void withdrawMoney(ObjectId accountId, Double ammount);
+
+
+    @Query("{'_id': ?0}")
+    @Update("{$inc: {'balance': ?1}}")
+    void depositMoney(ObjectId accountId, Double ammount);
+
     
 }
 

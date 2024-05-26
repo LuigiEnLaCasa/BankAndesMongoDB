@@ -4,16 +4,16 @@
 <body class="container-fluid p-0" data-bs-theme="dark">
     <nav th:replace="~{fragments/header}"></nav>
     <div class="container-md">
-        <h1 class="text-light">Crear Cliente</h1>
-        <form th:action="@{/clients/new/client/save}" method="post">
-            <div th:replace="~{fragments/forms/userForm2}"></div>
-            <!-- <div th:replace="~{fragments/forms/clientForm}"></div> -->
+        <h1 class="text-light">Crear empleado</h1>
+        <form th:action="@{/employees/new/employee/save}" method="post">
+            <div th:replace="~{fragments/forms/userForm}"></div>
+            <div th:replace="~{fragments/forms/employeeForm}"></div>
             <div class="my-5 d-flex justify-content-center gap-3">
                 <div>
                     <input type="submit" value="Guardar" class="btn btn-primary" />
                 </div>
                 <div>
-                    <a th:href="@{/clients}" class="btn btn-primary">Cancelar</a>
+                    <a th:href="@{/employees}" class="btn btn-primary">Cancelar</a>
                 </div>
             </div>
         </form>

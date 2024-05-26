@@ -15,9 +15,16 @@
             <option value="Activar">Activar</option>
         </select>
 
+        <label class="col-form-label" for="type">Tipo:</label>
+        <select class="form-control" id="type" name="type" required>
+            <option value="ahorros">Ahorros</option>
+            <option value="corriente">Corriente</option>
+            <option value="afc">AFC</option>
+        </select>
+
         <label class="col-form-label" for="Customer_idcard">ID de Cliente:</label>
         <select class="form-control" id="Customer_idcard" name="Customer_idcard" required>
-            <option th:each="customer : ${clientes}" th:value="${customer.idcard}" th:text="${customer.idcard}"></option>
+            <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.id}"></option>
         </select>
 
         <label class="col-form-label" for="office">Oficina asociada</label>

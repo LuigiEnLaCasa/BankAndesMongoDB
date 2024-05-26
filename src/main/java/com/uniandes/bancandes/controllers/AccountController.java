@@ -1,6 +1,7 @@
 package com.uniandes.bancandes.controllers;
 
 import java.io.Console;
+import java.time.Instant;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import java.time.Instant;
 
 import com.uniandes.bancandes.models.Account;
 import com.uniandes.bancandes.models.Employee;
@@ -58,7 +61,7 @@ public class AccountController {
     }
 
 
-    @PostMapping("/users/new/account/save")
+    @PostMapping("/accounts/new/save")
     public String accountSave(@ModelAttribute Account account) {
 
         accountRepository.save(new Account(
@@ -100,11 +103,6 @@ public class AccountController {
 
 
 
- 
-
-
-
-
 //UPDATE
     @GetMapping("/accounts/{id}/edit")
     public String accountEditForm(@PathVariable("id") ObjectId id, Model model) {
@@ -112,6 +110,7 @@ public class AccountController {
         Account account = accountRepository.findAccountById(id);
         if (account != null) {
             model.addAttribute("account", account);
+            model.addAttribute("customers", clientRepository.findAll());
             return "editAccount";
         } else {
             return "redirect:/accounts";
@@ -125,6 +124,51 @@ public class AccountController {
     }
 
 
+    @GetMapping("/accounts/{id}/withdraw")
+    public String accountWithdrawMoney(@PathVariable("id") ObjectId id, Model model) {
+        Account account = accountRepository.findAccountById(id);
+        if (account != null || account.getBalance()>= 0) {
+            model.addAttribute("account", account);
+            return "opWithdraw";
+        } else {
+            return "redirect:/accounts";
+        }
+    }
+
+    @PostMapping("/accounts/{id}/withdraw/save")
+    public String accountWithdrawSave(@PathVariable("id") ObjectId id, @RequestParam Double value, @ModelAttribute Account account) {
+        
+        // Instant currentDate = Instant.now();
+        
+        //accountRepository.addLogToAccount(id, value,currentDate, "Retiro");
+        value *=-1;
+        accountRepository.withdrawMoney(id, value);
+        return "redirect:/accounts";
+    }
+
+
+    @GetMapping("/accounts/{id}/deposit")
+    public String accountDepositoney(@PathVariable("id") ObjectId id, Model model) {
+        Account account = accountRepository.findAccountById(id);
+        if (account != null) {
+            model.addAttribute("account", account);
+            return "opDeposit";
+        } else {
+            return "redirect:/accounts";
+        }
+    }
+
+    @PostMapping("/accounts/{id}/deposit/save")
+    public String accountDepositSave(@PathVariable("id") ObjectId id, @RequestParam Double value, @ModelAttribute Account account) {
+
+       
+
+        
+        //logAccountRepository.insertLogAccount(value,"Consignacion",currentDate,account.getId());
+        accountRepository.depositMoney(id, value);
+        return "redirect:/accounts";
+    }
+
 
 
 
@@ -134,4 +178,4 @@ public class AccountController {
 
 
 
-//UPDATE
+

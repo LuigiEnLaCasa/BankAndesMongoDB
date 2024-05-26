@@ -29,7 +29,7 @@ public class EmployeeController{
     @Autowired
     ClientRepository customerRepository;
 
-
+//get employees
     @GetMapping("/employees")
     public String employees(Model model) {
         Collection<Employee> employeeCollection = employeeRepository.findAll();
@@ -41,15 +41,15 @@ public class EmployeeController{
     }
 
 
-    @GetMapping("/users/new/employees")
+    @GetMapping("/employees/new/employee")
     public String employeeForm(Model model) {
-
-        System.out.println("new employee");
-        return "users";
+        model.addAttribute("newUser", new Employee());
+        
+        return "newEmployee";
     
     }
 
-    @PostMapping("/users/new/employee/save")
+    @PostMapping("/employees/new/employee/save")
     public String employeeSave(@ModelAttribute Employee employee) {
 
         employeeRepository.save(new Employee(
@@ -71,7 +71,7 @@ public class EmployeeController{
         ));
 
     
-       return "redirect:/users";
+       return "redirect:/employees";
     }
     
 }
