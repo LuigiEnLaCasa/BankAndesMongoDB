@@ -13,19 +13,20 @@
 							<th scope="col">Tipo</th>
 							<th scope="col">Dirección</th>
 							<th scope="col">Oficina asociada</th>
-							<th scope="col"></th>
+							<!-- <th scope="col"></th> -->
 						</tr>
 					</thead>
 					<tbody class="table-group-divider">
 						<th:block th:each=" point : ${pointServices}">
 							<tr>
-								<td th:text="${point.id != null ? point.id.toString() : 'No ID'}"></td>
+								<td th:text="${point.idPoint}"></td>
 								<td th:text="${point.type}"></td>
 								<td th:text="${office.address}"></td>
 								<td th:text="${office.name}"></td>
 								<td>
-									<a th:href="@{'/pointServices/delete/' + ${point.id}}">
+									<a th:href="@{/point_services/delete/{id}/{officeId}(id=${point.idPoint}, officeId = ${office.id})}">
 										<button type="button" class="btn btn-primary">Eliminar</button>
+									</a>
 									</a>
 								</td>
 							</tr>

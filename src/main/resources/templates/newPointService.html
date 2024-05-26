@@ -4,7 +4,7 @@
 	<body class="container-fluid p-0" data-bs-theme="dark">
 		<nav th:replace="~{fragments/header}"></nav>
 		<div class="container-md">
-			<h1 class="text-light" th:text="'Nuevo punto de atención'"></h1>
+			<h1 class="text-light" th:text="'Nuevo Punto de Atención'"></h1>
 			<form th:action="@{/pointServices/new/save}" method="post">
 				<div th:replace="~{fragments/forms/pointServiceForm}"></div>
 
@@ -13,7 +13,7 @@
 						<input type="submit" value="Guardar" class="btn btn-primary" />
 					</div>
 					<div>
-						<a th:href="@{/pointServices}" class="btn btn-primary">Cancelar</a>
+						<a th:href="@{/offices}" class="btn btn-primary">Cancelar</a>
 					</div>
 				</div>
 			</form>

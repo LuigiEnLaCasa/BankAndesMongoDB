@@ -2,16 +2,20 @@
 	<div class="row">
 		<div class="col">
 			<label class="col-form-label">Tipo</label>
-			<input class="form-control" type="text" id="type" name="type" />
+			<select class="form-control" id="type" name="type" required>
+				<option th:selected="${newPoint.type eq 'cajero'}" value="cajero">Cajero</option>
+				<option th:selected="${newPoint.type eq 'atencion personalizada'}" value="atencion personalizada">Atencion Personalizada</option>
+				<option th:selected="${newPoint.type eq 'virtual'}" value="virtual">Virtual</option>
+			</select>
 		</div>
 		<div class="col">
-			<label class="col-form-label">Dirección</label>
-			<input class="form-control" type="text" id="address" name="address" />
+			<label class="col-form-label">Id</label>
+			<input class="form-control" type="number" id="idPoint" name="idPoint" required/>
 		</div>
 	</div>
 	<div class="row">
 		<label class="col-form-label">Oficina asociada</label>
-		<select class="form-control" name="office" required>
+		<select class="form-control" type= "ObjectId" name="officeId" required>
 			<th:block th:each="office : ${offices}">
 				<option th:value="${office.id}" th:text="${office.name}"></option>
 			</th:block>

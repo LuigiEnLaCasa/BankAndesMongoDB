@@ -19,7 +19,7 @@ import lombok.ToString;
 public class PointService {
     
     @Id
-    private ObjectId id;
+    private Integer idPoint;
     private String type;
  
 }

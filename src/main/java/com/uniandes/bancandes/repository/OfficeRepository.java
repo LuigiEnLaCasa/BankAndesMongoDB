@@ -20,9 +20,19 @@ public interface OfficeRepository extends MongoRepository <Office,ObjectId>{
     @Query("{'type': ?0, 'address': ?1}")
     PointService saveNewPointService(String type, String address);
 
+    @Query("{'_id':?0}, {'point_services':1}")
+    List<PointService> getOfficePointServices(ObjectId id);
+
     @Query("{'_id': ?0}")
-    @Update("{$push: {'point_services': {'type': ?1, 'address': ?2 }}}")
-    void addPointServiceToOffice(ObjectId accountId, String type, String address);
+    @Update("{$pull: {'point_services': {'idPoint': ?1}}}")
+    void deletePointServiceFromOffice(ObjectId officeId, Integer idPoint);
+
+    @Query("{'_id': ?0}")
+    @Update("{$push: {'point_services': {'idPoint': ?1, 'type': ?2}}}")
+    void addPointServiceToOffice(ObjectId officeId, Integer idPoint, String type);
+
+
+
 
 
     

@@ -1,6 +1,8 @@
 package com.uniandes.bancandes.controllers;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.uniandes.bancandes.models.Account;
 import com.uniandes.bancandes.models.Client;
 import com.uniandes.bancandes.models.Office;
+import com.uniandes.bancandes.models.PointService;
 import com.uniandes.bancandes.repository.ClientRepository;
 import com.uniandes.bancandes.repository.EmployeeRepository;
 import com.uniandes.bancandes.repository.OfficeRepository;
@@ -71,8 +74,52 @@ public class OfficeController {
             return "redirect:/";
         }
 
+    }
+
+
+        //Delete & add point Service
+
+        @GetMapping("/point_services/delete/{id}/{officeId}")
+        public String deletePointService(@PathVariable("id") Integer idPoint,@PathVariable("officeId") ObjectId idOffice) {
+            officeRepository.deletePointServiceFromOffice(idOffice, idPoint);
+            return "redirect:/offices";
         
     }
-    
+
+
+    @GetMapping("/pointServices/new")
+    public String newPointService(Model model) {
+        PointService pointService = new PointService();
+        List<Office> offices = officeRepository.findAll();
+
+        model.addAttribute("newPoint", pointService);
+        model.addAttribute("offices", offices);
+
+        return "newPointService";
+    }
+
+    @PostMapping("/pointServices/new/save")
+    public String addPointService(
+        @RequestParam("officeId") ObjectId officeId,
+        @RequestParam("idPoint") Integer idPoint,
+        @RequestParam("type") String type) 
+        {
+ 
+        PointService pointService = new PointService();
+        pointService.setIdPoint(idPoint);
+        pointService.setType(type);
+        
+        officeRepository.addPointServiceToOffice(officeId, idPoint, type);
+        return "redirect:/offices";
     
 }
+
+
+
+
+
+}
+    
+
+
+
