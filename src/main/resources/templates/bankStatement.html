@@ -31,12 +31,12 @@
             </thead>
             <tbody>
 
-                <tr th:each="log : ${logs}" >
+                <tr th:each="log : ${logs}" th:class="${log.typelog == 'Retiro'} ? 'Retiro' : 'otros'">
                     <td th:text="${log.id}"></td>
                     <td th:text="${log.ammount}"></td>
                     <td th:text="${log.logdate}"></td>
                     <td th:text="${log.typelog}"></td>
-                    <td th:text="${account.id}"></td>
+                    <td th:text="${accountId}"></td>
                     
                 </tr>
                 

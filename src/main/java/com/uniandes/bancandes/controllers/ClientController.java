@@ -39,7 +39,7 @@ public class ClientController{
 
     @GetMapping("/clients/new/client")
     public String clientForm(Model model) {
-        System.out.println("new client");
+        
         return "newClient";
     }
 

@@ -4,6 +4,8 @@ import java.io.Console;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.uniandes.bancandes.models.Account;
 import com.uniandes.bancandes.models.Employee;
 import com.uniandes.bancandes.models.LogAccount;
+import com.uniandes.bancandes.models.Office;
 import com.uniandes.bancandes.repository.AccountRepository;
 import com.uniandes.bancandes.repository.ClientRepository;
+import com.uniandes.bancandes.repository.OfficeRepository;
 
 
 @Controller
@@ -27,7 +31,9 @@ public class AccountController {
     @Autowired
     private AccountRepository accountRepository;
     @Autowired
-    private ClientRepository clientsRepository;
+    private ClientRepository clientRepository;
+    @Autowired
+    private OfficeRepository officeRepository;
 
     //mostrar las cuentas
         @GetMapping("/accounts")
@@ -39,12 +45,14 @@ public class AccountController {
     
 
 
-    //Craete una cuenta
+    //Create una cuenta
 
     @GetMapping("/accounts/new")
     public String accountForm(Model model) {
         model.addAttribute("newAccount", new Account());
-        System.out.println("new account");
+        model.addAttribute("customers", clientRepository.findAll());
+        model.addAttribute("offices", officeRepository.findAll());
+
         return "newAccount";
     
     }
@@ -70,30 +78,28 @@ public class AccountController {
     @GetMapping("/accounts/{id}/statement")
     public String accountStatement(@PathVariable("id") ObjectId id, Model model) throws InterruptedException {
 
-    System.out.println("Start of accountStatement method");
-    
-    Account account = accountRepository.findAccountById(id);
-    System.out.println("Account retrieved: " + account);
-    
-    //Date currentDate = new Date();
-    //Calendar calendar = Calendar.getInstance();
-    //calendar.setTime(currentDate);
-    //int year = calendar.get(Calendar.YEAR);
-    //int month = calendar.get(Calendar.MONTH) + 1;
-    Collection<LogAccount> statements = accountRepository.consultarLogsPorCuenta(id);
 
+    Optional<Account> accounts = accountRepository.findById(id);
+    
+    //Collection<LogAccount> statements = accountRepository.consultarLogsPorCuenta(id);
 
-    if (account != null) {
-        model.addAttribute("account", account);
-        model.addAttribute("logs", statements);
-        
-        System.out.println("Account and logs added to model");
+    if (accounts.isPresent()) {
+        Account account = accounts.get();
+        List<LogAccount> logs = account.getLog_accounts();
+        model.addAttribute("logs", logs);
+        model.addAttribute("accountId", id); // Pasar el ID de la cuenta
         return "bankStatement";
     } else {
-        System.out.println("Account not found, redirecting to /accounts");
-        return "redirect:/accounts";
+        // Manejo de la cuenta no encontrada
+        return "accounts"; // Nombre de tu plantilla Thymeleaf
+        
     }
+    
 }
+
+
+
+
  
 
 

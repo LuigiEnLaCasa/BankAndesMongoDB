@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.sql.Date;
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.Update;
@@ -17,6 +17,8 @@ import org.springframework.data.mongodb.repository.Update;
 import com.uniandes.bancandes.models.Account;
 
 public interface AccountRepository extends MongoRepository<Account, ObjectId> {
+
+    Optional<Account> findById(ObjectId id);
 
     @Query("{'id': ?0, 'balance': ?1, 'status': ?2, 'type':?3 ,'log_accounts': ?4}")
     Account saveNewAccount(ObjectId id, Double balance, String status,String type , List<LogAccount> log_accounts);
@@ -34,6 +36,16 @@ public interface AccountRepository extends MongoRepository<Account, ObjectId> {
 
     @Query(value = "{'_id': ?0}", fields = "{'log_accounts': 1, '_id': 0}")
     List<LogAccount> consultarLogsPorCuenta(ObjectId idCuenta);
+
+
+
+
+    /////////
+
+
+    /////////
+
+
 
     //UPDATE
     @Query("{ '_id': ?0 }")
