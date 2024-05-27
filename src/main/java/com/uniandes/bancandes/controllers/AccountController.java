@@ -208,7 +208,14 @@ public class AccountController {
         Account sender = accountRepository.findAccountById(senderId);
         Account receiver = accountRepository.findAccountById(recieverId);
 
-        if (sender != null && receiver!= null ) {
+        if (senderId.equals(recieverId)) {
+            // Optionally, add a message or redirect to an error page
+            return "redirect:/accounts?error=sameAccount";
+        }   
+
+
+
+        if (sender != null && receiver!= null && sender.getBalance() >= value ) {
             
             sender.setBalance(sender.getBalance() - value);
             receiver.setBalance(receiver.getBalance() + value);
