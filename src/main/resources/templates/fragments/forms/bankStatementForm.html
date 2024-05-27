@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/headContent}">
+
+    <style>
+        .retirar {
+            color: red;
+        }
+        .otros {
+            color: green;
+        }
+    </style>
+
+</head>
+
+<body>
+<nav th:replace="~{fragments/header}"></nav>
+
+    <div class="container mt-4">
+        <h1 class="text-center">Lista de Logs de Cuenta</h1>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID de Log</th>
+                <th>Monto</th>
+                <th>Fecha</th>
+                <th>Tipo de Operación</th>
+                <th>ID de Cuenta</th>
+            </tr>
+            </thead>
+            <tbody>
+
+                <tr th:each="log : ${logs}" th:class="${log.typelog == 'Retiro'} ? 'Retiro' : 'otros'">
+                    <td th:text="${log.idLog}"></td>
+                    <td th:text="${log.ammount}"></td>
+                    <td th:text="${log.logdate}"></td>
+                    <td th:text="${log.typelog}"></td>
+                    <td th:text="${accountId}"></td>
+                    
+                </tr>
+                
+
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

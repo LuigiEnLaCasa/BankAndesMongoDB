@@ -2,7 +2,9 @@ package com.uniandes.bancandes.controllers;
 
 import java.io.Console;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.time.YearMonth;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -103,6 +105,27 @@ public class AccountController {
     
 }
 
+
+
+    @GetMapping("/accounts/{id}/statementDate")
+    public String accountStatement(@PathVariable("id") ObjectId id, @RequestParam("month") int month, @RequestParam("year") int year, Model model) throws InterruptedException {
+        Optional<Account> accounts = accountRepository.findById(id);
+
+        if (accounts.isPresent()) {
+            Account account = accounts.get();
+            YearMonth yearMonth = YearMonth.of(year, month);
+            LocalDateTime start = yearMonth.atDay(1).atStartOfDay();
+            LocalDateTime end = yearMonth.plusMonths(1).atDay(1).atStartOfDay();
+
+            List<LogAccount> logs = accountRepository.findLogsByMonthAndYear(id, start, end);
+            model.addAttribute("logs", logs);
+            model.addAttribute("accountId", id);
+            return "bankStatementForm";
+        } else {
+            // Manejo de la cuenta no encontrada
+            return "accounts"; // Nombre de tu plantilla Thymeleaf
+        }
+    }
 
 
 

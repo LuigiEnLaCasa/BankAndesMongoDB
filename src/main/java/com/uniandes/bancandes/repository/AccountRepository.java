@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.time.Instant;
+import java.time.LocalDateTime;
+
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.Update;
 
@@ -35,8 +37,10 @@ public interface AccountRepository extends MongoRepository<Account, ObjectId> {
     List<LogAccount> consultarLogsPorCuenta(ObjectId idCuenta);
 
 
+    @Query("{'_id': ?0, 'log_accounts.logdate': {$gte: ?1, $lt: ?2}}")
+    List<LogAccount> findLogsByMonthAndYear(ObjectId accountId, LocalDateTime start, LocalDateTime end);
 
-
+    
     //UPDATE
     @Query("{ '_id': ?0 }")
     @Update("{$set: {'status': ?1}}")
